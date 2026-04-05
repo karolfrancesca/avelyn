@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avelyn — Intelligent Sales Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a2e;
+  --ink2:#2d2d4a;
+  --mid:#4a4a6a;
+  --muted:#8888aa;
+  --border:#e2e0ee;
+  --bg:#f5f3f8;
+  --bg2:#ede9f5;
+  --surface:#ffffff;
+  --accent:#5b3fa8;
+  --accent2:#8b5cf6;
+  --gold:#c9a84c;
+  --salmon:#d4766a;
+  --r:0.75rem;
+  --rl:1rem;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5rem;background:rgba(245,243,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;letter-spacing:-0.01em;color:var(--ink)}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.82rem;font-weight:400;letter-spacing:0.07em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:#fff!important;padding:0.55rem 1.4rem;border-radius:2rem;text-transform:none!important;letter-spacing:0.02em!important;font-weight:500!important}
+.lang-toggle{display:flex;gap:0.3rem}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--mid);font-size:0.72rem;font-family:'Outfit',sans-serif;padding:0.28rem 0.65rem;border-radius:1rem;cursor:pointer;transition:all 0.2s}
+.lang-btn.active,.lang-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:9rem 5rem 5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px)}
+.orb1{width:50vw;height:50vw;top:-15%;right:-10%;background:radial-gradient(circle,rgba(91,63,168,0.08),transparent 70%)}
+.orb2{width:30vw;height:30vw;bottom:5%;left:-5%;background:radial-gradient(circle,rgba(201,168,76,0.07),transparent 70%)}
+.hero-tag{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.8rem;opacity:0;animation:fadeUp 0.7s 0.2s forwards}
+.hero-tag::before{content:'';width:1.8rem;height:1px;background:var(--accent)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,5.5vw,5.8rem);line-height:1.04;letter-spacing:-0.02em;font-weight:600;max-width:15ch;opacity:0;animation:fadeUp 0.7s 0.35s forwards;color:var(--ink)}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.hero-sub{font-size:clamp(1rem,1.3vw,1.12rem);font-weight:300;color:var(--mid);max-width:48ch;margin-top:1.6rem;line-height:1.8;opacity:0;animation:fadeUp 0.7s 0.5s forwards}
+.hero-actions{display:flex;align-items:center;gap:1.5rem;margin-top:2.8rem;opacity:0;animation:fadeUp 0.7s 0.65s forwards}
+.btn-dark{background:var(--ink);color:#fff;padding:0.9rem 2.2rem;border-radius:2rem;font-size:0.92rem;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:transform 0.2s,background 0.2s;display:inline-block}
+.btn-dark:hover{background:var(--ink2);transform:translateY(-2px)}
+.btn-outline{color:var(--mid);font-size:0.88rem;text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;border:1px solid var(--border);padding:0.88rem 1.8rem;border-radius:2rem}
+.btn-outline:hover{color:var(--ink);border-color:var(--ink)}
+.hero-stats{display:flex;gap:3.5rem;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.7s 0.8s forwards}
+.stat-item{display:flex;flex-direction:column;gap:0.25rem}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--ink)}
+.stat-label{font-size:0.76rem;color:var(--muted);letter-spacing:0.05em}
+
+/* SECTION */
+section{padding:6rem 5rem}
+.section-tag{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.section-tag::before{content:'';width:1.4rem;height:1px;background:var(--accent)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3.2rem);line-height:1.08;letter-spacing:-0.02em;font-weight:600;max-width:22ch;margin-bottom:0.8rem;color:var(--ink)}
+.section-title em{font-style:italic;color:var(--accent);font-weight:400}
+
+/* PROBLEM */
+.problem{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+.problem-list{display:flex;flex-direction:column;gap:0.8rem}
+.problem-item{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.4rem;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);transition:border-color 0.3s,box-shadow 0.3s}
+.problem-item:hover{border-color:rgba(91,63,168,0.3);box-shadow:0 4px 20px rgba(91,63,168,0.06)}
+.problem-x{width:1.3rem;height:1.3rem;border-radius:50%;background:rgba(212,118,106,0.1);display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:var(--salmon);flex-shrink:0;margin-top:0.15rem}
+.problem-text{font-size:0.88rem;color:var(--mid);line-height:1.65}
+.problem-visual{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:2rem}
+.pv-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.pv-bar-wrap{margin-bottom:1.2rem}
+.pv-bar-label{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--mid);margin-bottom:0.45rem}
+.pv-bar-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.pv-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.4s ease}
+
+/* HOW */
+.how{background:var(--bg)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.step-card{padding:2rem 1.8rem;border-radius:var(--rl);border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+.step-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(91,63,168,0.1)}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:600;color:rgba(91,63,168,0.07);position:absolute;top:0.8rem;right:1.3rem;line-height:1}
+.step-dot{width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(91,63,168,0.08);border:1px solid rgba(91,63,168,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1.2rem}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:0.6rem;color:var(--ink)}
+.step-desc{font-size:0.85rem;color:var(--muted);line-height:1.7}
+
+/* WA MOCKUP */
+.wa-wrap{display:flex;justify-content:center;margin-top:3rem}
+.wa-mockup{background:var(--surface);border-radius:1.2rem;overflow:hidden;border:1px solid var(--border);max-width:300px;width:100%;box-shadow:0 20px 60px rgba(91,63,168,0.08)}
+.wa-header{background:var(--accent);padding:0.9rem 1rem;display:flex;align-items:center;gap:0.7rem}
+.wa-avatar{width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.68rem;color:#fff;font-weight:500}
+.wa-name{font-size:0.84rem;font-weight:500;color:#fff}
+.wa-online{font-size:0.67rem;color:rgba(255,255,255,0.7)}
+.wa-messages{padding:1rem;display:flex;flex-direction:column;gap:0.6rem;background:#f0ece8}
+.wa-msg{max-width:85%;padding:0.6rem 0.9rem;border-radius:0.7rem;font-size:0.76rem;line-height:1.5}
+.wa-in{background:#fff;color:var(--ink);align-self:flex-start;border-radius:0 0.7rem 0.7rem 0.7rem}
+.wa-out{background:#d9fdd3;color:var(--ink);align-self:flex-end;border-radius:0.7rem 0 0.7rem 0.7rem}
+.wa-time{font-size:0.6rem;color:var(--muted);margin-top:0.2rem;text-align:right}
+
+/* RESULTS */
+.results{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.result-card{padding:2rem 1.5rem;border-radius:var(--rl);border:1px solid var(--border);text-align:center;background:var(--bg);transition:box-shadow 0.3s,transform 0.3s}
+.result-card:hover{box-shadow:0 8px 30px rgba(91,63,168,0.08);transform:translateY(-3px)}
+.result-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--ink);display:block;margin-bottom:0.4rem}
+.result-label{font-size:0.8rem;color:var(--muted);line-height:1.5}
+
+/* PRICING */
+.pricing{background:var(--bg)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.pricing-card{padding:2.5rem 2rem;border-radius:var(--rl);border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;gap:1.5rem;transition:box-shadow 0.3s}
+.pricing-card.featured{border-color:var(--accent);position:relative;box-shadow:0 8px 40px rgba(91,63,168,0.12)}
+.featured-badge{position:absolute;top:-0.65rem;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.28rem 1rem;border-radius:1rem;white-space:nowrap}
+.pricing-tier{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.pricing-price{display:flex;align-items:baseline;gap:0.3rem}
+.price-setup{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--ink)}
+.price-monthly{font-size:0.8rem;color:var(--muted)}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.pricing-features li{font-size:0.85rem;color:var(--mid);display:flex;align-items:center;gap:0.6rem}
+.pricing-features li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+/* CTA */
+.cta-section{text-align:center;padding:7rem 5rem;background:var(--ink);position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60vw;height:60vw;background:radial-gradient(circle,rgba(91,63,168,0.3) 0%,transparent 60%);pointer-events:none}
+.cta-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:600;line-height:1.08;letter-spacing:-0.02em;max-width:20ch;margin:0 auto 1.3rem;color:#fff}
+.cta-section h2 em{font-style:italic;color:rgba(180,156,200,0.9);font-weight:400}
+.cta-section p{font-size:0.95rem;color:rgba(255,255,255,0.5);margin-bottom:2.5rem}
+.btn-light{background:#fff;color:var(--ink);padding:0.9rem 2.4rem;border-radius:2rem;font-size:0.92rem;font-weight:500;text-decoration:none;display:inline-block;transition:transform 0.2s,opacity 0.2s}
+.btn-light:hover{transform:translateY(-2px);opacity:0.92}
+
+/* FOOTER */
+footer{padding:1.8rem 5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--surface)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink)}
+.footer-logo span{color:var(--accent)}
+.footer-copy{font-size:0.78rem;color:var(--muted)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){nav{padding:1.2rem 1.5rem}.nav-links{display:none}.hero,section{padding:5rem 1.5rem 3rem}.problem-grid,.steps-grid,.results-grid,.pricing-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:0.8rem;text-align:center;padding:1.5rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Avelyn<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#how" data-en="How it works" data-es="Cómo funciona">How it works</a></li>
+    <li><a href="#results" data-en="Results" data-es="Resultados">Results</a></li>
+    <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta" data-en="Book a demo" data-es="Agenda demo">Book a demo</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"><div class="hero-orb orb1"></div><div class="hero-orb orb2"></div></div>
+  <div class="hero-tag" data-en="AI-Powered Sales Automation" data-es="Automatización de Ventas con IA">AI-Powered Sales Automation</div>
+  <h1 data-en="Your business responds. <em>Avelyn</em> closes." data-es="Tu empresa responde. <em>Avelyn</em> cierra.">Your business responds. <em>Avelyn</em> closes.</h1>
+  <p class="hero-sub" data-en="We build intelligent conversation systems that qualify leads, follow up automatically, and notify your sales team — 24/7, in any language." data-es="Construimos sistemas de conversación inteligentes que califican leads, hacen seguimiento automático y notifican a tu equipo de ventas — 24/7, en cualquier idioma.">We build intelligent conversation systems that qualify leads, follow up automatically, and notify your sales team — 24/7, in any language.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-dark" data-en="Book a free demo" data-es="Agenda tu demo gratis">Book a free demo</a>
+    <a href="#how" class="btn-outline" data-en="See how it works →" data-es="Ver cómo funciona →">See how it works →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><span class="stat-num">&lt;2min</span><span class="stat-label" data-en="Response time" data-es="Tiempo de respuesta">Response time</span></div>
+    <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-label" data-en="Always on" data-es="Siempre activo">Always on</span></div>
+    <div class="stat-item"><span class="stat-num">4</span><span class="stat-label" data-en="Languages" data-es="Idiomas">Languages</span></div>
+    <div class="stat-item"><span class="stat-num">7d</span><span class="stat-label" data-en="To go live" data-es="Para activar">To go live</span></div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="section-tag" data-en="The problem" data-es="El problema">The problem</div>
+  <h2 class="section-title" data-en="You're losing sales you already paid for." data-es="Estás perdiendo ventas que ya pagaste para conseguir.">You're losing sales you already paid for.</h2>
+  <div class="problem-grid">
+    <div class="problem-list">
+      <div class="problem-item"><div class="problem-x">✕</div><p class="problem-text" data-en="Leads that wait hours for a reply — and choose a competitor." data-es="Leads que esperan horas una respuesta — y eligen a tu competencia.">Leads that wait hours for a reply — and choose a competitor.</p></div>
+      <div class="problem-item"><div class="problem-x">✕</div><p class="problem-text" data-en="Follow-up that depends on someone remembering to do it." data-es="Seguimiento que depende de que alguien se acuerde de hacerlo.">Follow-up that depends on someone remembering to do it.</p></div>
+      <div class="problem-item"><div class="problem-x">✕</div><p class="problem-text" data-en="Sales team buried in repetitive messages instead of closing." data-es="Equipo de ventas atrapado en mensajes repetitivos en vez de cerrar.">Sales team buried in repetitive messages instead of closing.</p></div>
+      <div class="problem-item"><div class="problem-x">✕</div><p class="problem-text" data-en="No visibility into what's happening with your leads." data-es="Sin visibilidad de qué está pasando con tus leads.">No visibility into what's happening with your leads.</p></div>
+    </div>
+    <div class="problem-visual">
+      <p class="pv-label" data-en="Lead conversion loss by cause" data-es="Pérdida de conversión por causa">Lead conversion loss by cause</p>
+      <div class="pv-bar-wrap"><div class="pv-bar-label"><span data-en="Slow response time" data-es="Respuesta lenta">Slow response time</span><span>78%</span></div><div class="pv-bar-track"><div class="pv-bar-fill" data-w="78"></div></div></div>
+      <div class="pv-bar-wrap"><div class="pv-bar-label"><span data-en="No follow-up" data-es="Sin seguimiento">No follow-up</span><span>64%</span></div><div class="pv-bar-track"><div class="pv-bar-fill" data-w="64"></div></div></div>
+      <div class="pv-bar-wrap"><div class="pv-bar-label"><span data-en="Poor qualification" data-es="Mala calificación">Poor qualification</span><span>51%</span></div><div class="pv-bar-track"><div class="pv-bar-fill" data-w="51"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="section-tag" data-en="The system" data-es="El sistema">The system</div>
+  <h2 class="section-title" data-en="Three modules. One <em>complete</em> system." data-es="Tres módulos. Un sistema <em>completo</em>.">Three modules. One <em>complete</em> system.</h2>
+  <div class="steps-grid">
+    <div class="step-card"><span class="step-num">01</span><div class="step-dot">⚡</div><h3 class="step-title" data-en="Instant reception" data-es="Recepción instantánea">Instant reception</h3><p class="step-desc" data-en="Every lead gets a response in under 2 minutes — WhatsApp, Instagram, or web form. 24/7, no exceptions." data-es="Cada lead recibe respuesta en menos de 2 minutos — WhatsApp, Instagram o formulario web. 24/7, sin excepciones.">Every lead gets a response in under 2 minutes. 24/7, no exceptions.</p></div>
+    <div class="step-card"><span class="step-num">02</span><div class="step-dot">🧠</div><h3 class="step-title" data-en="Intelligent qualification" data-es="Calificación inteligente">Intelligent qualification</h3><p class="step-desc" data-en="Our AI asks the right questions and classifies each lead automatically — qualified, nurturing, or not a fit." data-es="Nuestra IA hace las preguntas correctas y clasifica cada lead automáticamente — calificado, nurturing o no aplica.">Our AI asks the right questions and classifies each lead automatically.</p></div>
+    <div class="step-card"><span class="step-num">03</span><div class="step-dot">🎯</div><h3 class="step-title" data-en="Smart handoff" data-es="Entrega inteligente">Smart handoff</h3><p class="step-desc" data-en="When a lead is ready, your sales rep gets a full summary. No context lost, no time wasted." data-es="Cuando un lead está listo, tu vendedor recibe el resumen completo. Sin perder contexto, sin perder tiempo.">When a lead is ready, your sales rep gets the full context instantly.</p></div>
+  </div>
+  <div class="wa-wrap">
+    <div class="wa-mockup">
+      <div class="wa-header"><div class="wa-avatar">AV</div><div><div class="wa-name">Avelyn</div><div class="wa-online" data-en="● Online" data-es="● En línea">● Online</div></div></div>
+      <div class="wa-messages">
+        <div class="wa-msg wa-in" data-en="Hi, I'm interested in your services" data-es="Hola, me interesa información sobre sus servicios">Hi, I'm interested in your services</div>
+        <div class="wa-msg wa-out"><span data-en="Hi! Thanks for reaching out to Avelyn. To help you better, what type of business do you run and how many leads do you handle monthly?" data-es="¡Hola! Gracias por escribir a Avelyn. Para ayudarte mejor, ¿qué tipo de negocio tienes y cuántos leads manejas al mes?">Hi! Thanks for reaching out. What type of business do you run?</span><div class="wa-time">✓✓ just now</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="results" id="results">
+  <div class="section-tag" data-en="Results" data-es="Resultados">Results</div>
+  <h2 class="section-title" data-en="Numbers that <em>matter</em>." data-es="Números que <em>importan</em>.">Numbers that <em>matter</em>.</h2>
+  <div class="results-grid">
+    <div class="result-card"><span class="result-num">↓80%</span><span class="result-label" data-en="Reduction in manual work" data-es="Reducción en trabajo manual">Reduction in manual work</span></div>
+    <div class="result-card"><span class="result-num">&lt;2m</span><span class="result-label" data-en="Average first response" data-es="Primera respuesta promedio">Average first response</span></div>
+    <div class="result-card"><span class="result-num">100%</span><span class="result-label" data-en="Leads followed up automatically" data-es="Leads con seguimiento automático">Leads followed up automatically</span></div>
+    <div class="result-card"><span class="result-num">7d</span><span class="result-label" data-en="To implement" data-es="Para implementar">To implement</span></div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="section-tag" data-en="Investment" data-es="Inversión">Investment</div>
+  <h2 class="section-title" data-en="Simple pricing. <em>Real</em> returns." data-es="Precios simples. Retornos <em>reales</em>.">Simple pricing. <em>Real</em> returns.</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price"><span class="price-setup">$500</span><span class="price-monthly" data-en="setup + $300/mo" data-es="setup + $300/mes">setup + $300/mo</span></div>
+      <ul class="pricing-features">
+        <li data-en="1 channel (WhatsApp)" data-es="1 canal (WhatsApp)">1 channel (WhatsApp)</li>
+        <li data-en="AI qualification system" data-es="Sistema de calificación IA">AI qualification system</li>
+        <li data-en="CRM dashboard" data-es="Dashboard CRM">CRM dashboard</li>
+        <li data-en="Weekly reports" data-es="Reportes semanales">Weekly reports</li>
+      </ul>
+      <a href="#contact" class="btn-outline" style="justify-content:center" data-en="Get started →" data-es="Comenzar →">Get started →</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="featured-badge" data-en="Most popular" data-es="Más popular">Most popular</div>
+      <div class="pricing-tier">Growth</div>
+      <div class="pricing-price"><span class="price-setup">$1,200</span><span class="price-monthly" data-en="setup + $600/mo" data-es="setup + $600/mes">setup + $600/mo</span></div>
+      <ul class="pricing-features">
+        <li data-en="3 channels" data-es="3 canales">3 channels</li>
+        <li data-en="Advanced AI qualification" data-es="Calificación IA avanzada">Advanced AI qualification</li>
+        <li data-en="Automated follow-up sequences" data-es="Secuencias de seguimiento automático">Automated follow-up sequences</li>
+        <li data-en="Real-time dashboard" data-es="Dashboard en tiempo real">Real-time dashboard</li>
+        <li data-en="4 languages" data-es="4 idiomas">4 languages</li>
+        <li data-en="Monthly strategy call" data-es="Llamada de estrategia mensual">Monthly strategy call</li>
+      </ul>
+      <a href="#contact" class="btn-dark" style="text-align:center" data-en="Book a demo" data-es="Agenda demo">Book a demo</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Scale</div>
+      <div class="pricing-price"><span class="price-setup">$2,500</span><span class="price-monthly" data-en="setup + $1,200/mo" data-es="setup + $1,200/mes">setup + $1,200/mo</span></div>
+      <ul class="pricing-features">
+        <li data-en="Unlimited channels" data-es="Canales ilimitados">Unlimited channels</li>
+        <li data-en="Full custom system" data-es="Sistema completamente personalizado">Full custom system</li>
+        <li data-en="CRM integrations" data-es="Integraciones CRM">CRM integrations</li>
+        <li data-en="Dedicated support" data-es="Soporte dedicado">Dedicated support</li>
+        <li data-en="Custom reporting" data-es="Reportes personalizados">Custom reporting</li>
+      </ul>
+      <a href="#contact" class="btn-outline" style="justify-content:center" data-en="Contact us →" data-es="Contáctanos →">Contact us →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <h2 data-en="Ready to see <em>Avelyn</em> in action?" data-es="¿Listo para ver <em>Avelyn</em> en acción?">Ready to see <em>Avelyn</em> in action?</h2>
+  <p data-en="Book 30 minutes. We'll show you exactly how the system works for your business." data-es="Agenda 30 minutos. Te mostramos exactamente cómo funciona el sistema para tu negocio.">Book 30 minutes. We'll show you exactly how the system works for your business.</p>
+  <a href="mailto:hello@avelyn.io" class="btn-light" data-en="Book your demo now" data-es="Agenda tu demo ahora">Book your demo now</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Avelyn<span>.</span></div>
+  <p class="footer-copy" data-en="© 2026 Avelyn. Intelligent sales automation." data-es="© 2026 Avelyn. Automatización inteligente de ventas.">© 2026 Avelyn. Intelligent sales automation.</p>
+</footer>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.lang-btn[onclick="setLang(\''+lang+'\')"]').classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const t=el.getAttribute('data-'+lang);
+    if(t)el.innerHTML=t;
+  });
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.querySelectorAll('.pv-bar-fill').forEach(b=>{b.style.width=b.getAttribute('data-w')+'%'});
+  });
+},{threshold:0.3});
+document.querySelectorAll('.problem-visual').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
