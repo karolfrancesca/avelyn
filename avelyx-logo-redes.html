@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f2ee; display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem; font-family: 'Outfit', sans-serif; }
+
+.logo-card {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+}
+
+/* 1:1 para Instagram / LinkedIn / WhatsApp */
+.sq-dark {
+  width: 400px; height: 400px;
+  background: #1e1518;
+}
+
+.sq-cream {
+  width: 400px; height: 400px;
+  background: #f5f2ee;
+  border: 1px solid #e8e2db;
+}
+
+/* 16:9 para LinkedIn banner / Twitter header */
+.wide-dark {
+  width: 600px; height: 200px;
+  background: #1e1518;
+}
+
+.wide-cream {
+  width: 600px; height: 200px;
+  background: #f5f2ee;
+  border: 1px solid #e8e2db;
+}
+
+.logo-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  color: #ede8e1;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.logo-text-dark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  color: #1e1518;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.dot { color: #c47a65; font-style: normal; }
+
+.label {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #9a928a;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+  width: 400px;
+}
+
+.label-wide {
+  width: 600px;
+}
+
+.tagline {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.tagline-light { color: #5a5050; }
+.tagline-dark { color: #9a8f88; }
+
+.line-accent {
+  display: block;
+  width: 80px; height: 1px;
+  background: #c47a65;
+  margin: 0.6rem auto 0;
+}
+</style>
+</head>
+<body>
+
+<p class="label">01 — Cuadrado oscuro · Instagram / LinkedIn / WhatsApp Business</p>
+<div class="logo-card sq-dark">
+  <div style="text-align:center;">
+    <span class="logo-text" style="font-size: 72px;">Avelyx<span class="dot">.</span></span>
+    <span class="line-accent"></span>
+    <span class="tagline tagline-dark">avelyx.io</span>
+  </div>
+</div>
+
+<p class="label">02 — Cuadrado claro · Versión alternativa</p>
+<div class="logo-card sq-cream">
+  <div style="text-align:center;">
+    <span class="logo-text-dark" style="font-size: 72px;">Avelyx<span class="dot">.</span></span>
+    <span class="line-accent"></span>
+    <span class="tagline tagline-light">avelyx.io</span>
+  </div>
+</div>
+
+<p class="label label-wide">03 — Banner horizontal oscuro · LinkedIn / Twitter header</p>
+<div class="logo-card wide-dark">
+  <div style="text-align:center;">
+    <span class="logo-text" style="font-size: 64px;">Avelyx<span class="dot">.</span></span>
+    <span class="tagline tagline-dark" style="margin-top: 0.5rem;">Intelligent Business Automation</span>
+  </div>
+</div>
+
+<p class="label label-wide">04 — Banner horizontal claro</p>
+<div class="logo-card wide-cream">
+  <div style="text-align:center;">
+    <span class="logo-text-dark" style="font-size: 64px;">Avelyx<span class="dot">.</span></span>
+    <span class="tagline tagline-light" style="margin-top: 0.5rem;">Intelligent Business Automation</span>
+  </div>
+</div>
+
+</body>
+</html>
