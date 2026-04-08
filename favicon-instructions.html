@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f2ee; font-family: 'Outfit', sans-serif; padding: 3rem; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #9a928a; align-self: flex-start; }
+.preview-row { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.favicon-box {
+  display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+}
+.favicon-size {
+  font-size: 10px; color: #9a928a; letter-spacing: 0.1em; text-transform: uppercase;
+}
+/* The actual favicon designs */
+.fav {
+  border-radius: 16px; background: #2d1f42;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: visible; flex-shrink: 0;
+}
+.fav-letter {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-weight: 300;
+  color: #f5f2ee; line-height: 1;
+}
+.fav-dot {
+  position: absolute; border-radius: 50%; background: #c47a65;
+}
+
+/* Light version */
+.fav-light {
+  border-radius: 16px; background: #f5f2ee;
+  border: 1px solid #e8e2db;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: visible; flex-shrink: 0;
+}
+.fav-letter-dark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-weight: 300;
+  color: #2d1f42; line-height: 1;
+}
+</style>
+</head>
+<body>
+
+<p class="label">Avelyx · Favicon / Tab icon · Todas las versiones</p>
+
+<div class="preview-row">
+
+  <!-- 512px dark -->
+  <div class="favicon-box">
+    <div class="fav" style="width:180px;height:180px;border-radius:32px;">
+      <span class="fav-letter" style="font-size:120px;margin-left:-8px;">A</span>
+      <div class="fav-dot" style="width:22px;height:22px;top:20px;right:18px;"></div>
+    </div>
+    <span class="favicon-size">512px · App Store / Play Store</span>
+  </div>
+
+  <!-- 192px dark -->
+  <div class="favicon-box">
+    <div class="fav" style="width:100px;height:100px;border-radius:20px;">
+      <span class="fav-letter" style="font-size:68px;margin-left:-4px;">A</span>
+      <div class="fav-dot" style="width:13px;height:13px;top:10px;right:10px;"></div>
+    </div>
+    <span class="favicon-size">192px · Android</span>
+  </div>
+
+  <!-- 96px dark -->
+  <div class="favicon-box">
+    <div class="fav" style="width:64px;height:64px;border-radius:12px;">
+      <span class="fav-letter" style="font-size:44px;margin-left:-3px;">A</span>
+      <div class="fav-dot" style="width:9px;height:9px;top:6px;right:6px;"></div>
+    </div>
+    <span class="favicon-size">96px · Favicon</span>
+  </div>
+
+  <!-- 32px dark -->
+  <div class="favicon-box">
+    <div class="fav" style="width:32px;height:32px;border-radius:6px;">
+      <span class="fav-letter" style="font-size:22px;margin-left:-1px;">A</span>
+      <div class="fav-dot" style="width:5px;height:5px;top:3px;right:3px;"></div>
+    </div>
+    <span class="favicon-size">32px · Tab</span>
+  </div>
+
+  <!-- 16px dark -->
+  <div class="favicon-box">
+    <div class="fav" style="width:16px;height:16px;border-radius:3px;">
+      <span class="fav-letter" style="font-size:11px;margin-left:-1px;">A</span>
+      <div class="fav-dot" style="width:3px;height:3px;top:1px;right:1px;"></div>
+    </div>
+    <span class="favicon-size">16px · Mínimo</span>
+  </div>
+
+</div>
+
+<div class="preview-row">
+
+  <!-- Light versions -->
+  <div class="favicon-box">
+    <div class="fav-light" style="width:180px;height:180px;border-radius:32px;">
+      <span class="fav-letter-dark" style="font-size:120px;margin-left:-8px;">A</span>
+      <div class="fav-dot" style="width:22px;height:22px;top:20px;right:18px;"></div>
+    </div>
+    <span class="favicon-size">512px · Versión clara</span>
+  </div>
+
+  <div class="favicon-box">
+    <div class="fav-light" style="width:100px;height:100px;border-radius:20px;">
+      <span class="fav-letter-dark" style="font-size:68px;margin-left:-4px;">A</span>
+      <div class="fav-dot" style="width:13px;height:13px;top:10px;right:10px;"></div>
+    </div>
+    <span class="favicon-size">192px · Versión clara</span>
+  </div>
+
+  <div class="favicon-box">
+    <div class="fav-light" style="width:64px;height:64px;border-radius:12px;">
+      <span class="fav-letter-dark" style="font-size:44px;margin-left:-3px;">A</span>
+      <div class="fav-dot" style="width:9px;height:9px;top:6px;right:6px;"></div>
+    </div>
+    <span class="favicon-size">96px · Versión clara</span>
+  </div>
+
+</div>
+
+<p class="label" style="margin-top:1rem;">Para usar como favicon: abre en el navegador → screenshot → guarda como PNG → sube a tu proyecto</p>
+
+</body>
+</html>
