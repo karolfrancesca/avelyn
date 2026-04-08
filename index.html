@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avelyn — Intelligent Business Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5f2ee;
+  --cream-dark: #ede8e1;
+  --stone: #c8bfb0;
+  --ink: #1e1e1e;
+  --ink-light: #4a4540;
+  --plum: #2d1f42;
+  --plum-mid: #4a3560;
+  --dusty-rose: #c47a65;
+  --dusty-rose-light: #d9957f;
+  --mist: #8a9ab5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 5rem;
+  background: rgba(245,242,238,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(45,31,66,0.08);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.logo span {
+  color: var(--dusty-rose);
+  font-style: normal;
+  font-size: 2.2rem;
+}
+
+.nav-center {
+  display: flex; gap: 2.8rem; list-style: none;
+}
+
+.nav-center a {
+  font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.nav-center a:hover { color: var(--plum); }
+
+.lang-toggle { display: flex; gap: 0.3rem; }
+
+.lang-btn {
+  background: none; border: 1px solid var(--stone);
+  color: var(--ink-light); font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.35rem 0.7rem;
+  border-radius: 2px; cursor: pointer; transition: all 0.2s;
+}
+
+.lang-btn.active, .lang-btn:hover {
+  background: var(--plum); border-color: var(--plum); color: var(--cream);
+}
+
+.nav-demo {
+  background: var(--dusty-rose); color: var(--cream);
+  border: none; font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.7rem 1.6rem;
+  border-radius: 2px; cursor: pointer; transition: background 0.2s;
+  text-decoration: none;
+}
+
+.nav-demo:hover { background: var(--dusty-rose-light); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 10rem 5rem 6rem;
+  position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; top: -20%; right: -10%;
+  width: 55vw; height: 120%;
+  background: radial-gradient(ellipse at center, rgba(45,31,66,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--plum-mid);
+  margin-bottom: 2rem;
+}
+
+.hero-tag::before {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--dusty-rose);
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  font-weight: 300; line-height: 1.12;
+  letter-spacing: -0.01em; color: var(--ink);
+  margin-bottom: 1.8rem;
+}
+
+h1 em { font-style: italic; color: var(--plum); }
+
+.hero-sub {
+  font-size: 1rem; font-weight: 300; line-height: 1.75;
+  color: var(--ink-light); max-width: 440px; margin-bottom: 2.8rem;
+}
+
+.hero-actions { display: flex; gap: 1rem; align-items: center; }
+
+.btn-primary {
+  background: var(--plum); color: var(--cream);
+  border: none; font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 1rem 2.2rem;
+  border-radius: 2px; cursor: pointer; transition: background 0.2s;
+  text-decoration: none; display: inline-block;
+}
+
+.btn-primary:hover { background: var(--plum-mid); }
+
+.btn-ghost {
+  background: none; border: 1px solid var(--stone);
+  color: var(--ink-light); font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 1rem 2rem;
+  border-radius: 2px; cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-block;
+}
+
+.btn-ghost:hover { border-color: var(--plum); color: var(--plum); }
+
+/* hero visual */
+.hero-visual {
+  display: flex; justify-content: center; align-items: center; position: relative;
+}
+
+.phone-mockup {
+  width: 280px; background: #fff; border-radius: 32px;
+  box-shadow: 0 40px 80px rgba(45,31,66,0.15), 0 8px 20px rgba(0,0,0,0.06);
+  padding: 2rem 1.4rem; position: relative;
+}
+
+.phone-header {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding-bottom: 1rem; border-bottom: 1px solid #f0ece8; margin-bottom: 1.2rem;
+}
+
+.phone-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--plum); display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--cream);
+}
+
+.phone-name { font-size: 0.82rem; font-weight: 500; color: #1e1e1e; }
+.phone-status { font-size: 0.68rem; color: #7db87d; font-weight: 400; }
+
+.chat-bubble {
+  margin-bottom: 0.8rem; max-width: 85%;
+  padding: 0.7rem 1rem; border-radius: 14px;
+  font-size: 0.78rem; line-height: 1.5; font-weight: 300;
+}
+
+.chat-bubble.in {
+  background: #f0ece8; color: #1e1e1e;
+  border-bottom-left-radius: 4px; margin-right: auto;
+}
+
+.chat-bubble.out {
+  background: var(--plum); color: #f5f2ee;
+  border-bottom-right-radius: 4px; margin-left: auto;
+}
+
+.chat-time { font-size: 0.6rem; color: var(--stone); text-align: right; margin-top: 0.2rem; }
+
+.hero-stat {
+  position: absolute; background: #fff; border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0 8px 24px rgba(45,31,66,0.1);
+  font-size: 0.72rem;
+}
+
+.hero-stat.top-right { top: -1rem; right: -2rem; }
+.hero-stat.bottom-left { bottom: 1rem; left: -2.5rem; }
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 500; color: var(--plum); line-height: 1;
+}
+
+.stat-label { color: var(--ink-light); margin-top: 0.2rem; }
+
+/* ── SECTIONS ── */
+section { padding: 7rem 5rem; }
+
+.section-tag {
+  font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--dusty-rose);
+  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.4rem;
+}
+
+.section-tag::before {
+  content: ''; display: block; width: 20px; height: 1px; background: var(--dusty-rose);
+}
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+  font-weight: 300; line-height: 1.2; color: var(--ink); margin-bottom: 1.2rem;
+}
+
+h2 em { font-style: italic; color: var(--plum); }
+
+.section-sub {
+  font-size: 0.97rem; font-weight: 300; line-height: 1.75;
+  color: var(--ink-light); max-width: 520px;
+}
+
+/* ── PILLARS ── */
+.pillars {
+  background: var(--cream-dark);
+  border-top: 1px solid rgba(45,31,66,0.08);
+  border-bottom: 1px solid rgba(45,31,66,0.08);
+}
+
+.pillars-inner { max-width: 1200px; margin: 0 auto; }
+
+.pillars-header { margin-bottom: 4rem; }
+
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+}
+
+.pillar-card {
+  background: var(--cream); border-radius: 12px;
+  border: 1px solid rgba(45,31,66,0.1);
+  padding: 2.5rem 2rem; transition: all 0.3s;
+}
+
+.pillar-card:hover {
+  box-shadow: 0 16px 40px rgba(45,31,66,0.1);
+  transform: translateY(-4px);
+}
+
+.pillar-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(45,31,66,0.07);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-bottom: 1.4rem;
+}
+
+.pillar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+
+.pillar-desc {
+  font-size: 0.87rem; font-weight: 300; line-height: 1.7;
+  color: var(--ink-light); margin-bottom: 1.5rem;
+}
+
+.pillar-list {
+  list-style: none; display: flex; flex-direction: column; gap: 0.5rem;
+}
+
+.pillar-list li {
+  font-size: 0.82rem; font-weight: 300; color: var(--ink-light);
+  display: flex; align-items: flex-start; gap: 0.6rem;
+}
+
+.pillar-list li::before {
+  content: '→'; color: var(--dusty-rose); font-size: 0.75rem; flex-shrink: 0; margin-top: 0.1rem;
+}
+
+/* ── HOW ── */
+.how-inner { max-width: 1200px; margin: 0 auto; }
+.how-header { margin-bottom: 4rem; }
+
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+.step-card {
+  padding: 2.5rem 2rem; border: 1px solid rgba(45,31,66,0.1);
+  border-radius: 12px; background: #fff; transition: all 0.3s; position: relative;
+}
+
+.step-card:hover {
+  box-shadow: 0 16px 40px rgba(45,31,66,0.1); transform: translateY(-4px);
+}
+
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; color: rgba(45,31,66,0.1); line-height: 1; margin-bottom: 1.2rem;
+}
+
+.step-title { font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 0.7rem; }
+.step-desc { font-size: 0.87rem; font-weight: 300; line-height: 1.7; color: var(--ink-light); }
+
+/* ── RESULTS ── */
+.results { background: var(--plum); color: var(--cream); }
+.results-inner { max-width: 1200px; margin: 0 auto; }
+.results .section-tag { color: var(--dusty-rose-light); }
+.results .section-tag::before { background: var(--dusty-rose-light); }
+.results h2 { color: var(--cream); }
+.results h2 em { color: var(--dusty-rose-light); }
+.results .section-sub { color: rgba(245,242,238,0.7); }
+
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; margin-top: 4rem;
+  background: rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden;
+}
+
+.metric {
+  padding: 3rem 2rem; background: rgba(255,255,255,0.04);
+  text-align: center; transition: background 0.2s;
+}
+
+.metric:hover { background: rgba(255,255,255,0.08); }
+
+.metric-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem; font-weight: 300; color: var(--cream); line-height: 1; margin-bottom: 0.5rem;
+}
+
+.metric-num span { font-size: 2rem; color: var(--dusty-rose-light); }
+.metric-label { font-size: 0.82rem; font-weight: 300; line-height: 1.5; color: rgba(245,242,238,0.65); }
+
+/* ── INVISIBLE ── */
+.invisible {
+  background: var(--cream-dark);
+  border-top: 1px solid rgba(45,31,66,0.08);
+  border-bottom: 1px solid rgba(45,31,66,0.08);
+}
+
+.invisible-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+
+.invisible-points { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2.5rem; }
+
+.inv-point { display: flex; gap: 1.2rem; align-items: flex-start; }
+
+.inv-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--dusty-rose); flex-shrink: 0; margin-top: 0.4rem;
+}
+
+.inv-point p { font-size: 0.92rem; font-weight: 300; line-height: 1.7; color: var(--ink-light); }
+.inv-point strong { color: var(--ink); font-weight: 500; }
+
+.invisible-card {
+  background: var(--cream); border: 1px solid rgba(45,31,66,0.1);
+  border-radius: 16px; padding: 2.5rem;
+}
+
+.inv-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 500; color: var(--plum);
+  margin-bottom: 1.5rem; letter-spacing: 0.02em;
+}
+
+.inv-flow { display: flex; flex-direction: column; gap: 0; }
+
+.inv-flow-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--cream-dark);
+  font-size: 0.83rem; font-weight: 300; color: var(--ink-light);
+}
+
+.inv-flow-item:last-child { border-bottom: none; }
+
+.inv-flow-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; flex-shrink: 0;
+}
+
+.inv-flow-icon.purple { background: rgba(45,31,66,0.1); }
+.inv-flow-icon.rose { background: rgba(196,122,101,0.1); }
+.inv-flow-icon.slate { background: rgba(61,79,107,0.1); }
+.inv-flow-icon.green { background: rgba(100,160,100,0.1); }
+
+/* ── PRICING ── */
+.pricing-section { max-width: 1200px; margin: 0 auto; }
+
+.market-selector {
+  display: inline-flex; margin-top: 2.5rem; margin-bottom: 3.5rem;
+  border: 1px solid rgba(45,31,66,0.15); border-radius: 4px; overflow: hidden;
+}
+
+.market-btn {
+  background: none; border: none; font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem; font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light);
+  padding: 0.7rem 1.6rem; cursor: pointer; transition: all 0.2s;
+  border-right: 1px solid rgba(45,31,66,0.15);
+}
+
+.market-btn:last-child { border-right: none; }
+.market-btn.active { background: var(--plum); color: var(--cream); }
+
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+.plan-card {
+  border: 1px solid rgba(45,31,66,0.12); border-radius: 12px;
+  padding: 2.5rem 2rem; background: #fff; transition: all 0.3s; position: relative;
+}
+
+.plan-card.featured {
+  border-color: var(--plum); background: var(--cream);
+  box-shadow: 0 20px 50px rgba(45,31,66,0.12);
+}
+
+.plan-badge {
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  background: var(--plum); color: var(--cream);
+  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 0 0 6px 6px;
+}
+
+.plan-name {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--plum); margin-bottom: 1.5rem;
+}
+
+.plan-setup { font-size: 0.8rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+
+.plan-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 0.3rem;
+}
+
+.plan-price span { font-size: 1.2rem; color: var(--stone); }
+
+.plan-period {
+  font-size: 0.8rem; color: var(--stone);
+  margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--cream-dark);
+}
+
+.plan-features {
+  list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem;
+}
+
+.plan-features li {
+  font-size: 0.85rem; font-weight: 300; color: var(--ink-light);
+  display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.5;
+}
+
+.plan-features li::before { content: '✓'; color: var(--dusty-rose); font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+.plan-cta {
+  display: block; text-align: center; padding: 0.85rem; border-radius: 4px;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; text-decoration: none; transition: all 0.2s;
+}
+
+.plan-cta.outline { border: 1px solid var(--stone); color: var(--ink-light); }
+.plan-cta.outline:hover { border-color: var(--plum); color: var(--plum); }
+.plan-cta.filled { background: var(--plum); color: var(--cream); border: none; }
+.plan-cta.filled:hover { background: var(--plum-mid); }
+
+/* ── CTA ── */
+.cta-section { background: var(--ink); text-align: center; padding: 8rem 5rem; }
+.cta-section h2 { color: var(--cream); max-width: 600px; margin: 0 auto 1.5rem; }
+.cta-section h2 em { color: var(--dusty-rose-light); }
+.cta-section p { color: rgba(245,242,238,0.6); font-size: 0.95rem; font-weight: 300; margin-bottom: 2.5rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink); padding: 3rem 5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300; font-style: italic;
+  letter-spacing: -0.01em; color: var(--cream); line-height: 1;
+}
+
+.footer-logo span { color: var(--dusty-rose); font-style: normal; font-size: 2rem; }
+.footer-copy { font-size: 0.78rem; color: rgba(245,242,238,0.35); font-weight: 300; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-center { display: none; }
+  section { padding: 5rem 2rem; }
+  .hero { padding: 8rem 2rem 5rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { display: none; }
+  .pillars-grid, .steps-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .plans-grid { grid-template-columns: 1fr; }
+  .invisible-inner { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Avelyn<span>.</span></div>
+  <ul class="nav-center">
+    <li><a href="#pillars" data-en="What We Do" data-es="Qué Hacemos">What We Do</a></li>
+    <li><a href="#how" data-en="How It Works" data-es="Cómo Funciona">How It Works</a></li>
+    <li><a href="#results" data-en="Results" data-es="Resultados">Results</a></li>
+    <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="mailto:hello@avelyn.io" class="nav-demo" data-en="Book a Demo" data-es="Agenda Demo">Book a Demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag fade-up" data-en="Intelligent Business Automation" data-es="Automatización Inteligente de Negocios">Intelligent Business Automation</div>
+      <h1 class="fade-up delay-1">
+        <span data-en="The intelligence behind every <em>business interaction</em>." data-es="La inteligencia detrás de cada <em>interacción de tu empresa</em>.">The intelligence behind every <em>business interaction</em>.</span>
+      </h1>
+      <p class="hero-sub fade-up delay-2" data-en="Avelyn designs, builds, and operates the AI infrastructure that replaces repetitive processes across sales, customer service, and operations — so your team focuses exclusively on what humans do best." data-es="Avelyn diseña, construye y opera la infraestructura de IA que reemplaza procesos repetitivos en ventas, servicio al cliente y operaciones — para que tu equipo se enfoque en lo que los humanos hacen mejor.">Avelyn designs, builds, and operates the AI infrastructure that replaces repetitive processes across sales, customer service, and operations — so your team focuses exclusively on what humans do best.</p>
+      <div class="hero-actions fade-up delay-3">
+        <a href="mailto:hello@avelyn.io" class="btn-primary" data-en="Request your demo" data-es="Solicita tu demo">Request your demo</a>
+        <a href="#pillars" class="btn-ghost" data-en="See what we automate" data-es="Qué automatizamos">See what we automate</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-header">
+          <div class="phone-avatar">A</div>
+          <div>
+            <div class="phone-name">Avelyn</div>
+            <div class="phone-status">● Online</div>
+          </div>
+        </div>
+        <div class="chat-bubble in">Hi, I need help with my order</div>
+        <div class="chat-bubble out">Of course! Let me pull up your order right away. Can you share your order number?</div>
+        <div class="chat-bubble in">It's #4821</div>
+        <div class="chat-bubble out">Found it. Your order ships tomorrow — I'll send you the tracking link as soon as it's ready.</div>
+        <div class="chat-time">Resolved in 45 seconds</div>
+      </div>
+      <div class="hero-stat top-right">
+        <div class="stat-num">80%</div>
+        <div class="stat-label" data-en="less manual work" data-es="menos trabajo manual">less manual work</div>
+      </div>
+      <div class="hero-stat bottom-left">
+        <div class="stat-num">&lt;30<span style="font-size:1rem">s</span></div>
+        <div class="stat-label" data-en="response time" data-es="tiempo de respuesta">response time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="pillars-inner">
+    <div class="pillars-header">
+      <div class="section-tag" data-en="What We Automate" data-es="Qué Automatizamos">What We Automate</div>
+      <h2><span data-en="Every process that <em>doesn't need</em> a human." data-es="Cada proceso que <em>no necesita</em> un humano.">Every process that <em>doesn't need</em> a human.</span></h2>
+      <p class="section-sub" data-en="We analyze your operation, identify what AI can handle better than your team, and build the system that runs it — invisibly, 24/7." data-es="Analizamos tu operación, identificamos qué puede manejar la IA mejor que tu equipo, y construimos el sistema que lo ejecuta — de forma invisible, 24/7.">We analyze your operation, identify what AI can handle better than your team, and build the system that runs it — invisibly, 24/7.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-title" data-en="Sales" data-es="Ventas">Sales</div>
+        <p class="pillar-desc" data-en="Never lose a lead to slow response again. Avelyn qualifies, follows up, and delivers only sales-ready prospects to your team." data-es="Nunca pierdas un lead por respuesta lenta. Avelyn califica, hace seguimiento y entrega solo prospectos listos a tu equipo.">Never lose a lead to slow response again. Avelyn qualifies, follows up, and delivers only sales-ready prospects to your team.</p>
+        <ul class="pillar-list">
+          <li data-en="Automatic lead qualification" data-es="Calificación automática de leads">Automatic lead qualification</li>
+          <li data-en="Proposal follow-up & reminders" data-es="Seguimiento de propuestas">Proposal follow-up & reminders</li>
+          <li data-en="Instant quote generation" data-es="Cotizaciones al instante">Instant quote generation</li>
+          <li data-en="Re-engagement of cold leads" data-es="Reactivación de leads fríos">Re-engagement of cold leads</li>
+        </ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">💬</div>
+        <div class="pillar-title" data-en="Customer Service" data-es="Servicio al Cliente">Customer Service</div>
+        <p class="pillar-desc" data-en="24/7 support that resolves, not just responds. Intelligent escalation to humans only when it truly matters." data-es="Soporte 24/7 que resuelve, no solo responde. Escalamiento inteligente a humanos solo cuando realmente importa.">24/7 support that resolves, not just responds. Intelligent escalation to humans only when it truly matters.</p>
+        <ul class="pillar-list">
+          <li data-en="Instant FAQ & support responses" data-es="Respuestas instantáneas a preguntas frecuentes">Instant FAQ & support responses</li>
+          <li data-en="Order & case tracking" data-es="Seguimiento de pedidos y casos">Order & case tracking</li>
+          <li data-en="Complaint handling & resolution" data-es="Gestión de quejas y reclamos">Complaint handling & resolution</li>
+          <li data-en="Post-service satisfaction surveys" data-es="Encuestas de satisfacción post-servicio">Post-service satisfaction surveys</li>
+        </ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">⚙️</div>
+        <div class="pillar-title" data-en="Operations" data-es="Operaciones">Operations</div>
+        <p class="pillar-desc" data-en="Internal processes that slow your team down — automated, organized, and running without human intervention." data-es="Los procesos internos que frenan a tu equipo — automatizados, organizados y funcionando sin intervención humana.">Internal processes that slow your team down — automated, organized, and running without human intervention.</p>
+        <ul class="pillar-list">
+          <li data-en="Appointment & booking management" data-es="Gestión de citas y reservas">Appointment & booking management</li>
+          <li data-en="Document collection & processing" data-es="Recopilación y procesamiento de documentos">Document collection & processing</li>
+          <li data-en="Internal HR & admin requests" data-es="Solicitudes internas de RRHH y administración">Internal HR & admin requests</li>
+          <li data-en="Automated reporting & alerts" data-es="Reportes automáticos y alertas">Automated reporting & alerts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-tag" data-en="How It Works" data-es="Cómo Funciona">How It Works</div>
+      <h2><span data-en="Consulting, building,<br>and <em>operating</em> — all in one." data-es="Consultoría, construcción<br>y <em>operación</em> — todo en uno.">Consulting, building,<br>and <em>operating</em> — all in one.</span></h2>
+      <p class="section-sub" data-en="Avelyn isn't a tool you configure yourself. We analyze your business, build the system, and keep it running — you just see the results." data-es="Avelyn no es una herramienta que configuras tú. Nosotros analizamos tu negocio, construimos el sistema y lo mantenemos funcionando — tú solo ves los resultados.">Avelyn isn't a tool you configure yourself. We analyze your business, build the system, and keep it running — you just see the results.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title" data-en="Operational diagnosis" data-es="Diagnóstico operacional">Operational diagnosis</div>
+        <p class="step-desc" data-en="We map your current processes and identify exactly where AI creates the most impact for your specific business." data-es="Mapeamos tus procesos actuales e identificamos exactamente dónde la IA genera más impacto para tu negocio específico.">We map your current processes and identify exactly where AI creates the most impact for your specific business.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title" data-en="Custom system design" data-es="Diseño del sistema a medida">Custom system design</div>
+        <p class="step-desc" data-en="We design the automation architecture tailored to your industry, team size, and existing tools — nothing generic." data-es="Diseñamos la arquitectura de automatización adaptada a tu industria, tamaño de equipo y herramientas existentes — nada genérico.">We design the automation architecture tailored to your industry, team size, and existing tools — nothing generic.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title" data-en="Build & integrate" data-es="Construcción e integración">Build & integrate</div>
+        <p class="step-desc" data-en="We build and connect the system to your channels — WhatsApp, web, email, CRM, or internal tools. No disruption to your team." data-es="Construimos y conectamos el sistema a tus canales — WhatsApp, web, email, CRM o herramientas internas. Sin interrupciones para tu equipo.">We build and connect the system to your channels — WhatsApp, web, email, CRM, or internal tools. No disruption to your team.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title" data-en="Launch & train" data-es="Lanzamiento y ajuste">Launch & train</div>
+        <p class="step-desc" data-en="We launch the system, monitor the first interactions closely, and fine-tune based on real data from your clients." data-es="Lanzamos el sistema, monitoreamos las primeras interacciones de cerca y ajustamos en base a datos reales de tus clientes.">We launch the system, monitor the first interactions closely, and fine-tune based on real data from your clients.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <div class="step-title" data-en="Operate & improve" data-es="Operamos y mejoramos">Operate & improve</div>
+        <p class="step-desc" data-en="We maintain, update, and continuously improve the system. As your business grows, Avelyn grows with it." data-es="Mantenemos, actualizamos y mejoramos continuamente el sistema. A medida que tu negocio crece, Avelyn crece con él.">We maintain, update, and continuously improve the system. As your business grows, Avelyn grows with it.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <div class="step-title" data-en="You focus on what matters" data-es="Tú te enfocas en lo importante">You focus on what matters</div>
+        <p class="step-desc" data-en="Your team stops doing repetitive work and starts doing meaningful work. That's the real ROI of Avelyn." data-es="Tu equipo deja de hacer trabajo repetitivo y empieza a hacer trabajo significativo. Ese es el ROI real de Avelyn.">Your team stops doing repetitive work and starts doing meaningful work. That's the real ROI of Avelyn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="results-inner">
+    <div class="section-tag" data-en="Real Results" data-es="Resultados Reales">Real Results</div>
+    <h2><span data-en="Numbers that speak <em>for themselves</em>." data-es="Números que hablan <em>por sí solos</em>.">Numbers that speak <em>for themselves</em>.</span></h2>
+    <p class="section-sub" data-en="What businesses achieve in the first 90 days with Avelyn." data-es="Lo que logran las empresas en los primeros 90 días con Avelyn.">What businesses achieve in the first 90 days with Avelyn.</p>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-num"><span>&lt;</span>30<span>s</span></div>
+        <p class="metric-label" data-en="Average response time, 24/7" data-es="Tiempo de respuesta promedio, 24/7">Average response time, 24/7</p>
+      </div>
+      <div class="metric">
+        <div class="metric-num">80<span>%</span></div>
+        <p class="metric-label" data-en="Reduction in manual repetitive work" data-es="Reducción en trabajo manual repetitivo">Reduction in manual repetitive work</p>
+      </div>
+      <div class="metric">
+        <div class="metric-num">35<span>%</span></div>
+        <p class="metric-label" data-en="Average increase in conversion rate in 3 months" data-es="Aumento promedio en tasa de conversión en 3 meses">Average increase in conversion rate in 3 months</p>
+      </div>
+      <div class="metric">
+        <div class="metric-num">0</div>
+        <p class="metric-label" data-en="Processes left unattended, ever" data-es="Procesos sin atender, jamás">Processes left unattended, ever</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVISIBLE -->
+<section class="invisible">
+  <div class="invisible-inner">
+    <div>
+      <div class="section-tag" data-en="Invisible by Design" data-es="Invisible por Diseño">Invisible by Design</div>
+      <h2><span data-en="Your brand. <em>Our infrastructure</em>." data-es="Tu marca. <em>Nuestra infraestructura</em>.">Your brand. <em>Our infrastructure</em>.</span></h2>
+      <div class="invisible-points">
+        <div class="inv-point">
+          <div class="inv-dot"></div>
+          <p data-en="<strong>Your clients always interact with your brand</strong> — Avelyn operates completely behind the scenes, invisible to everyone outside your team." data-es="<strong>Tus clientes siempre interactúan con tu marca</strong> — Avelyn opera completamente detrás de escena, invisible para todos fuera de tu equipo."><strong>Your clients always interact with your brand</strong> — Avelyn operates completely behind the scenes, invisible to everyone outside your team.</p>
+        </div>
+        <div class="inv-point">
+          <div class="inv-dot"></div>
+          <p data-en="<strong>No lock-in, ever.</strong> You own your data, your conversations, and your processes — always. If you leave, you take everything." data-es="<strong>Sin dependencia, jamás.</strong> Tus datos, conversaciones y procesos son siempre tuyos. Si te vas, te llevas todo."><strong>No lock-in, ever.</strong> You own your data, your conversations, and your processes — always. If you leave, you take everything.</p>
+        </div>
+        <div class="inv-point">
+          <div class="inv-dot"></div>
+          <p data-en="<strong>Works for any industry.</strong> Real estate, clinics, agencies, logistics, legal, tech, retail — we've built for them all." data-es="<strong>Funciona para cualquier industria.</strong> Inmobiliarias, clínicas, agencias, logística, jurídico, tech, retail — hemos construido para todas."><strong>Works for any industry.</strong> Real estate, clinics, agencies, logistics, legal, tech, retail — we've built for them all.</p>
+        </div>
+        <div class="inv-point">
+          <div class="inv-dot"></div>
+          <p data-en="<strong>Multilingual from day one.</strong> Spanish, English, French, Portuguese — the system responds in the language of whoever it's talking to." data-es="<strong>Multilingüe desde el primer día.</strong> Español, inglés, francés, portugués — el sistema responde en el idioma de quien le escribe."><strong>Multilingual from day one.</strong> Spanish, English, French, Portuguese — the system responds in the language of whoever it's talking to.</p>
+        </div>
+      </div>
+    </div>
+    <div class="invisible-card">
+      <div class="inv-card-title" data-en="What happens behind the scenes" data-es="Lo que pasa detrás de escena">What happens behind the scenes</div>
+      <div class="inv-flow">
+        <div class="inv-flow-item">
+          <div class="inv-flow-icon purple">💬</div>
+          <span data-en="Client or lead sends a message" data-es="Cliente o lead envía un mensaje">Client or lead sends a message</span>
+        </div>
+        <div class="inv-flow-item">
+          <div class="inv-flow-icon rose">⚡</div>
+          <span data-en="Avelyn responds in under 30 seconds" data-es="Avelyn responde en menos de 30 segundos">Avelyn responds in under 30 seconds</span>
+        </div>
+        <div class="inv-flow-item">
+          <div class="inv-flow-icon slate">🎯</div>
+          <span data-en="Resolves, qualifies, or routes intelligently" data-es="Resuelve, califica o enruta inteligentemente">Resolves, qualifies, or routes intelligently</span>
+        </div>
+        <div class="inv-flow-item">
+          <div class="inv-flow-icon purple">📋</div>
+          <span data-en="Logs everything automatically" data-es="Registra todo automáticamente">Logs everything automatically</span>
+        </div>
+        <div class="inv-flow-item">
+          <div class="inv-flow-icon green">✓</div>
+          <span data-en="Your team only handles what truly needs them" data-es="Tu equipo solo atiende lo que realmente lo necesita">Your team only handles what truly needs them</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-section">
+    <div class="section-tag" data-en="Plans & Pricing" data-es="Planes y Precios">Plans & Pricing</div>
+    <h2><span data-en="Transparent pricing,<br><em>extraordinary results</em>." data-es="Precios transparentes,<br><em>resultados extraordinarios</em>.">Transparent pricing,<br><em>extraordinary results</em>.</span></h2>
+    <p class="section-sub" data-en="All plans include diagnosis, custom build, integration, and ongoing support. Priced by number of automated processes." data-es="Todos los planes incluyen diagnóstico, construcción a medida, integración y soporte continuo. El precio depende del número de procesos automatizados.">All plans include diagnosis, custom build, integration, and ongoing support. Priced by number of automated processes.</p>
+
+    <div class="market-selector">
+      <button class="market-btn active" onclick="setMarket('latam', event)" data-en="Latin America" data-es="Latinoamérica">Latin America</button>
+      <button class="market-btn" onclick="setMarket('usa', event)" data-en="USA / Canada" data-es="USA / Canadá">USA / Canada</button>
+      <button class="market-btn" onclick="setMarket('eu', event)" data-en="Europe" data-es="Europa">Europe</button>
+    </div>
+
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-setup" data-en="Setup:" data-es="Instalación:">Setup: <strong class="setup-price" data-latam="$500" data-usa="$1,200" data-eu="€1,100">$500</strong></div>
+        <div class="plan-price"><span class="currency-sym">$</span><span class="monthly-price" data-latam="250" data-usa="600" data-eu="550">250</span></div>
+        <div class="plan-period" data-en="/ month · 1 automated process" data-es="/ mes · 1 proceso automatizado">/ month · 1 automated process</div>
+        <ul class="plan-features">
+          <li data-en="Operational diagnosis included" data-es="Diagnóstico operacional incluido">Operational diagnosis included</li>
+          <li data-en="1 fully custom automated process" data-es="1 proceso automatizado completamente a medida">1 fully custom automated process</li>
+          <li data-en="WhatsApp, web, or email integration" data-es="Integración por WhatsApp, web o email">WhatsApp, web, or email integration</li>
+          <li data-en="CRM & reporting setup" data-es="Configuración de CRM y reportes">CRM & reporting setup</li>
+          <li data-en="Monthly performance review" data-es="Revisión mensual de desempeño">Monthly performance review</li>
+        </ul>
+        <a href="mailto:hello@avelyn.io" class="plan-cta outline" data-en="Get started" data-es="Comenzar">Get started</a>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-badge" data-en="Most Popular" data-es="Más Popular">Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-setup" data-en="Setup:" data-es="Instalación:">Setup: <strong class="setup-price" data-latam="$1,200" data-usa="$3,000" data-eu="€2,800">$1,200</strong></div>
+        <div class="plan-price"><span class="currency-sym">$</span><span class="monthly-price" data-latam="600" data-usa="1,400" data-eu="1,200">600</span></div>
+        <div class="plan-period" data-en="/ month · up to 3 processes" data-es="/ mes · hasta 3 procesos">/ month · up to 3 processes</div>
+        <ul class="plan-features">
+          <li data-en="Everything in Starter" data-es="Todo lo de Starter">Everything in Starter</li>
+          <li data-en="Up to 3 automated processes" data-es="Hasta 3 procesos automatizados">Up to 3 automated processes</li>
+          <li data-en="Multi-channel integration" data-es="Integración multicanal">Multi-channel integration</li>
+          <li data-en="Multi-language support" data-es="Soporte multilingüe">Multi-language support</li>
+          <li data-en="Priority support & strategy calls" data-es="Soporte prioritario y llamadas de estrategia">Priority support & strategy calls</li>
+        </ul>
+        <a href="mailto:hello@avelyn.io" class="plan-cta filled" data-en="Get started" data-es="Comenzar">Get started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-name">Scale</div>
+        <div class="plan-setup" data-en="Setup:" data-es="Instalación:">Setup: <strong class="setup-price" data-latam="$2,500" data-usa="$6,000" data-eu="€5,500">$2,500</strong></div>
+        <div class="plan-price"><span class="currency-sym">$</span><span class="monthly-price" data-latam="1,200" data-usa="2,800" data-eu="2,500">1,200</span></div>
+        <div class="plan-period" data-en="/ month · unlimited processes" data-es="/ mes · procesos ilimitados">/ month · unlimited processes</div>
+        <ul class="plan-features">
+          <li data-en="Everything in Growth" data-es="Todo lo de Growth">Everything in Growth</li>
+          <li data-en="Unlimited automated processes" data-es="Procesos automatizados ilimitados">Unlimited automated processes</li>
+          <li data-en="Full operational transformation" data-es="Transformación operacional completa">Full operational transformation</li>
+          <li data-en="Dedicated account manager" data-es="Account manager dedicado">Dedicated account manager</li>
+          <li data-en="Advanced analytics dashboard" data-es="Dashboard de analítica avanzada">Advanced analytics dashboard</li>
+        </ul>
+        <a href="mailto:hello@avelyn.io" class="plan-cta outline" data-en="Get started" data-es="Comenzar">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-tag" style="color:var(--dusty-rose-light);justify-content:center;">
+    <span style="display:block;width:20px;height:1px;background:var(--dusty-rose-light);"></span>
+    <span data-en="Ready to transform your operation?" data-es="¿Listo para transformar tu operación?">Ready to transform your operation?</span>
+  </div>
+  <h2><span data-en="Stop managing processes.<br>Start <em>growing</em> your business." data-es="Deja de gestionar procesos.<br>Empieza a <em>crecer</em> tu negocio.">Stop managing processes.<br>Start <em>growing</em> your business.</span></h2>
+  <p data-en="Book a 30-minute diagnosis call and discover exactly which processes Avelyn can automate for your business." data-es="Agenda una llamada de diagnóstico de 30 minutos y descubre exactamente qué procesos puede automatizar Avelyn para tu negocio.">Book a 30-minute diagnosis call and discover exactly which processes Avelyn can automate for your business.</p>
+  <a href="mailto:hello@avelyn.io" class="btn-primary" data-en="Book your diagnosis call" data-es="Agenda tu llamada de diagnóstico">Book your diagnosis call</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Avelyn<span>.</span></div>
+  <p class="footer-copy" data-en="© 2026 Avelyn. Intelligent business automation." data-es="© 2026 Avelyn. Automatización inteligente de negocios.">© 2026 Avelyn. Intelligent business automation.</p>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const t = el.getAttribute('data-' + lang);
+    if (t) el.innerHTML = t;
+  });
+  document.querySelectorAll('.market-btn').forEach(btn => {
+    const t = btn.getAttribute('data-' + lang);
+    if (t) btn.textContent = t;
+  });
+}
+
+function setMarket(market, e) {
+  document.querySelectorAll('.market-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  const symbol = market === 'eu' ? '€' : '$';
+  document.querySelectorAll('.currency-sym').forEach(el => el.textContent = symbol);
+  document.querySelectorAll('.monthly-price').forEach(el => {
+    el.textContent = el.getAttribute('data-' + market);
+  });
+  document.querySelectorAll('.setup-price').forEach(el => {
+    el.textContent = el.getAttribute('data-' + market);
+  });
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.pv-bar-fill').forEach(b => {
+        b.style.width = b.getAttribute('data-w') + '%';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.problem-visual').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
